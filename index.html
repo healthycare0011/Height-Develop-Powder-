@@ -173,8 +173,8 @@
     <label for="quantity">Quantity:</label>
     <div class="quantity-container">
       <input type="number" id="quantity" name="quantity" min="1" max="100" value="1" readonly>
-      <button class="quantity-btn" onclick="decrementQuantity()">-</button>
-      <button class="quantity-btn" onclick="incrementQuantity()">+</button>
+       <button class="quantity-btn" onclick="decrementQuantity(event)">-</button>
+      <button class="quantity-btn" onclick="incrementQuantity(event)">+</button>
     </div>
 
     <label for="fullName">Full Name:</label>
@@ -213,19 +213,22 @@
 </form>
 
   <script>
-    function incrementQuantity() {
-      var quantityInput = document.getElementById('quantity');
-      quantityInput.value = parseInt(quantityInput.value) + 1;
+  function incrementQuantity(event) {
+    event.preventDefault();
+    var quantityInput = document.getElementById('quantity');
+    quantityInput.value = parseInt(quantityInput.value) + 1;
+    return false;
+  }
+
+  function decrementQuantity(event) {
+    event.preventDefault();
+    var quantityInput = document.getElementById('quantity');
+    if (parseInt(quantityInput.value) > 1) {
+      quantityInput.value = parseInt(quantityInput.value) - 1;
     }
-
-    function decrementQuantity() {
-      var quantityInput = document.getElementById('quantity');
-      if (parseInt(quantityInput.value) > 1) {
-        quantityInput.value = parseInt(quantityInput.value) - 1;
-      }
-     }
-
-  </script>
+    return false;
+  }
+      </script>
 
 
   <script>
